@@ -1,7 +1,16 @@
-void setup(){}
+void setup(){  
+}
 
-void draw(){}
+void draw(){
+  float sum = Multiply(3.9,5);
+  println(sum);
+  
+}
 
+
+float Multiply(float a, float b){
+  return a*b;
+}
 //Issue 1 Write Add function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
 
 //Issue 1---------------------------------------------------------------------------

@@ -1,8 +1,23 @@
-void setup(){}
+//int b = input?
+//int c = input?
 
-void draw(){}
+void setup()
+{
+
+}
+
+void draw()
+{
+
+}
 
 //Issue 1 Write Add function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
+
+//void add()
+//{
+//  int a = int b + int c;
+//  print a;
+//} something like this?
 
 //Issue 1---------------------------------------------------------------------------
 

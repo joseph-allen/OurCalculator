@@ -1,6 +1,4 @@
 void setup(){
-  int x = add(5,3);
-  println(x);
 }
 
 void draw(){}

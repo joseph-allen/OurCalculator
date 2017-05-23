@@ -14,5 +14,12 @@ class Button{
     rect(posX,posY,sizeX,sizeY);
     
   }
+  
+  // Returns true if mouse is pressed and mouse is inside button.
+  boolean clicked(){
+    return (mouseX > posX && mouseX < posX + sizeX) &&
+           (mouseY > posY && mouseY < posY + sizeY) &&
+           mousePressed;
+  }
 
 }

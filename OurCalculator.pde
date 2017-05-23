@@ -1,3 +1,5 @@
+float answer; // Will store the previously computed answer.
+
 void setup(){}
 
 void draw(){}

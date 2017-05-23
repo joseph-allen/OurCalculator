@@ -1,9 +1,11 @@
-void setup(){}
+void setup(){
+  sum();
+}
 
 void draw(){}
 
 //Issue 1 Write Add function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
-void add(){
+void sum(){
   int a = 50;
   int b = 5;
   int c = a + b;

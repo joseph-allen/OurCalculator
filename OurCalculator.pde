@@ -16,6 +16,12 @@ float multiply(float a, float b){
 }
 //Issue 2---------------------------------------------------------------------------
 
+//Issue 10: Subtract function
+float subtract(float a, float b){
+  return a-b;
+}
+//Issue 10--------------------------------------------------------------------------
+
 class Calculator{
   float answer; // Will hold previously computed answer.
   ArrayList<Button> buttons; // Holds the calculator's buttons.

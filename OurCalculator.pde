@@ -15,3 +15,9 @@ float multiply(float a, float b){
   return a*b;
 }
 //Issue 2---------------------------------------------------------------------------
+
+//Issue 10: Subtract function
+float subtract(float a, float b){
+  return a-b;
+}
+//Issue 10--------------------------------------------------------------------------

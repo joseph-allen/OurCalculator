@@ -32,13 +32,24 @@ void setup() {
   buttons.add(new Button(0, gap, "clear"));
 }
 void draw() {
+  background(205);
   for (Button b : buttons) {
     b.display();
   }
+  
+  for (Button b : buttons) {
+    if(b.clicked() && float(b.label) >= 0){
+        answer = float(b.label);
+     }
+     if(b.clicked() && b.label == "clear"){
+       answer = 0;
+     }
+  }
+  
   displayanswer();
 }
 
-void displayanswer(){
+void displayanswer(){ //displays answer float to window.
   textSize(32);
   textAlign(RIGHT);
   fill(0);

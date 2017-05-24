@@ -1,3 +1,5 @@
+float answer; // Will hold previously computed answer.
+
 void setup(){}
 
 void draw(){}
@@ -13,3 +15,9 @@ float multiply(float a, float b){
   return a*b;
 }
 //Issue 2---------------------------------------------------------------------------
+
+//Issue 10: Subtract function
+float subtract(float a, float b){
+  return a-b;
+}
+//Issue 10--------------------------------------------------------------------------

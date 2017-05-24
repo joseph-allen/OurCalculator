@@ -38,7 +38,7 @@ void mousePressed() {
     if (selectedButton.label == "=") {
       computeResult(); //for future commit
     } else if (selectedButton.label == "clear") {
-      clearText(); //for future commit
+      clearText();
     } else {
       expression.append(selectedButton.label);
     }
@@ -50,7 +50,7 @@ void computeResult() {
 }
 
 void clearText() {
-  //left for future commit
+  expression.delete(0, expression.length());
 }
 
 void createButtons() {

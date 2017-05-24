@@ -8,6 +8,9 @@ Button sevenbutton = new Button(25, 350, "1");
 Button eightbutton = new Button(100, 350, "1");
 Button ninebutton = new Button(175, 350, "1");
 
+
+
+
 float answer; // Will hold previously computed answer.
 
 void setup(){
@@ -36,4 +39,12 @@ float multiply(float a, float b){
 
 float subtract(float a, float b){
   return a-b;
+}
+
+float divide(float a, float b){
+  if (b != 0) {
+    return a/b;
+  } else {
+    throw new ArithmeticException("Cannot divide by zero");
+  }
 }

@@ -5,9 +5,9 @@ ArrayList<Button> buttons;
 int gap;
 
 void setup() {
-
   size(400, 600);
-
+  answer = 0;
+  
   buttons = new ArrayList<Button>();
 
   //adding zero
@@ -35,7 +35,16 @@ void draw() {
   for (Button b : buttons) {
     b.display();
   }
+  displayanswer();
 }
+
+void displayanswer(){
+  textSize(32);
+  textAlign(RIGHT);
+  fill(0);
+  text(answer, width - 10, 50); 
+}
+
 
 //MATH FUNCTIONS BELOW
 float add(float a, float b) {

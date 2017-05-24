@@ -1,5 +1,8 @@
 float answer; // Will hold previously computed answer.
 
+void setup(){}
+void draw(){}
+
 //MATH FUNCTIONS BELOW
 float add(float a, float b){
 	return a+b;

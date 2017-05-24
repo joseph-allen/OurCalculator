@@ -1,6 +1,7 @@
 float answer; // Will hold previously computed answer.
 
 ArrayList<Button> buttons;
+StringBuilder expression = new StringBuilder("");
 
 int gap;
 
@@ -9,10 +10,47 @@ void setup() {
   createButtons();
 }
 
+int padding = 5; //pixel padding for input from the right 
+
 void draw() {
+
+  background(80);
+
+  fill(255);
+  textAlign(LEFT, CENTER);
+  text(expression.toString(), width-textWidth(expression.toString()+padding), gap/2);
+
   for (Button b : buttons) {
     b.display();
   }
+}
+
+void mousePressed() {
+  Button selectedButton = null;
+
+  for (Button b : buttons) {
+    if (b.clicked()) {
+      selectedButton = b;
+      break;
+    }
+  }
+  if (selectedButton != null) {
+    if (selectedButton.label == "=") {
+      computeResult(); //for future commit
+    } else if (selectedButton.label == "clear") {
+      clearText(); //for future commit
+    } else {
+      expression.append(selectedButton.label);
+    }
+  }
+}
+
+void computeResult() {
+  //left for future commit
+}
+
+void clearText() {
+  //left for future commit
 }
 
 void createButtons() {

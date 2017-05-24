@@ -45,48 +45,6 @@ float divide(float a, float b){
 		return a/b;
 	} else {
 		throw new ArithmeticException("Cannot divide by zero");
-}
-
-// Returns true if the character is either a digit or the '.' period character.
-boolean isNumericChar(String s){
-  return s.matches("[0-9\\.]") && s.length() == 1;
-}
-
-void mouseClicked(){
-  // Search for the button that was pressed.
-  Button pressed = null;
-  for (Button b : buttons){
-    if (b.clicked()){
-      pressed = b;
-      break;
-    }
-  }
-  
-  // If no button was pressed, exit function.
-  if (pressed == null)
-    return;
-  
-  switch (pressed.label){
-    case "+":
-      // Handle addition button here...
-      return;
-    case "-":
-      // Handle subtraction button here...
-      return;
-    case "*":
-      // Handle multiplication button here...
-      return;
-    case "/":
-      // Handle division button here...
-      return;
-    default:
-      if (!isNumericChar(pressed.label)){
-        println("The button pressed does not have a supported label!");
-      }
-      //
-      // Handle number buttons here...
-      //
-      return;
   }
 }
 
@@ -133,4 +91,3 @@ void mouseClicked(){
       return;
   }
 }
-

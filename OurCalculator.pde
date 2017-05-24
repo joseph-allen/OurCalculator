@@ -1,30 +1,32 @@
-Button onebutton = new Button(25, 200, "1");
-Button twobutton = new Button(100, 200, "1");
-Button threebutton = new Button(175, 200, "1");
-Button fourbutton = new Button(25, 275, "1");
-Button fivebutton = new Button(100, 275, "1");
-Button sixbutton = new Button(175, 275, "1");
-Button sevenbutton = new Button(25, 350, "1");
-Button eightbutton = new Button(100, 350, "1");
-Button ninebutton = new Button(175, 350, "1");
-
 float answer; // Will hold previously computed answer.
 ArrayList<Button> buttons; // Initialize in setup.
 
 void setup(){
   size(375,600);
-  onebutton.Display();
-  twobutton.Display();
-  threebutton.Display();
-  fourbutton.Display();
-  fivebutton.Display();
-  sixbutton.Display();
-  sevenbutton.Display();
-  eightbutton.Display();
-  ninebutton.Display();
+  
+  buttons = new ArrayList<Button>();
+  buttons.add(new Button(25, 125, "0"));
+  buttons.add(new Button(25, 200, "1"));
+  buttons.add(new Button(100, 200, "2"));
+  buttons.add(new Button(175, 200, "3"));
+  buttons.add(new Button(25, 275, "4"));
+  buttons.add(new Button(100, 275, "5"));
+  buttons.add(new Button(175, 275, "6"));
+  buttons.add(new Button(25, 350, "7"));
+  buttons.add(new Button(100, 350, "8"));
+  buttons.add(new Button(175, 350, "9"));
+
+  buttons.add(new Button(25, 425, "+"));
+  buttons.add(new Button(100, 425, "-"));
+  buttons.add(new Button(175, 425, "*"));
+  buttons.add(new Button(25, 500, "/"));
+  buttons.add(new Button(100, 500, "="));
 }
 
 void draw(){
+  for (Button b : buttons){
+    b.Display();
+  }
 }
 
 //MATH FUNCTIONS BELOW
@@ -45,6 +47,7 @@ float divide(float a, float b){
 		return a/b;
 	} else {
 		throw new ArithmeticException("Cannot divide by zero");
+  }
 }
 
 // Returns true if the character is either a digit or the '.' period character.
@@ -53,6 +56,7 @@ boolean isNumericChar(String s){
 }
 
 void mouseClicked(){
+  
   // Search for the button that was pressed.
   Button pressed = null;
   for (Button b : buttons){

@@ -4,24 +4,27 @@ void setup(){}
 
 void draw(){}
 
-//Issue 1 Write Add function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
+//add
 float add(float a, float b) {
-	return a + b;
+  return a+b;
 }
-//Issue 1---------------------------------------------------------------------------
+//end
 
-//Issue 2 Write Multiply function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
+//multiply
 float multiply(float a, float b){
   return a*b;
 }
-//Issue 2---------------------------------------------------------------------------
+//end
 
-//Issue 3 Write Divide function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
+//divide
 float divide(float a, float b){
   return a/b;
 }
-//Issue 4---------------------------------------------------------------------------
+//end
+
+//subtract
 float subtract(float a, float b){
   return a-b;
 }
+//end
 

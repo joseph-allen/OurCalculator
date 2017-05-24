@@ -1,13 +1,59 @@
 float answer; // Will hold previously computed answer.
 
 ArrayList<Button> buttons;
+StringBuilder expression = new StringBuilder("");
 
 int gap;
 
 void setup() {
-
   size(400, 600);
+  createButtons();
+}
 
+int padding = 5; //pixel padding for input from the right 
+
+void draw() {
+
+  background(80);
+
+  fill(255);
+  textAlign(LEFT, CENTER);
+  text(expression.toString(), width-textWidth(expression.toString()+padding), gap/2);
+
+  for (Button b : buttons) {
+    b.display();
+  }
+}
+
+void mousePressed() {
+  Button selectedButton = null;
+
+  for (Button b : buttons) {
+    if (b.clicked()) {
+      selectedButton = b;
+      break;
+    }
+  }
+  if (selectedButton != null) {
+    if (selectedButton.label == "=") {
+      computeResult(); //for future commit
+    } else if (selectedButton.label == "clear") {
+      clearText();
+    } else {
+      expression.append(selectedButton.label);
+    }
+  }
+}
+
+void computeResult() {
+  //left for future commit
+}
+
+void clearText() {
+  expression.delete(0, expression.length());
+}
+
+void createButtons() {
   buttons = new ArrayList<Button>();
 
   //adding zero
@@ -30,11 +76,6 @@ void setup() {
 
   //clear button for future
   buttons.add(new Button(0, gap, "clear"));
-}
-void draw() {
-  for (Button b : buttons) {
-    b.display();
-  }
 }
 
 //MATH FUNCTIONS BELOW

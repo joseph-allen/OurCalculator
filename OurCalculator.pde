@@ -1,23 +1,22 @@
 float answer; // Will hold previously computed answer.
 
-void setup(){}
-
-void draw(){}
-
-//Issue 1 Write Add function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
+//MATH FUNCTIONS BELOW
 float add(float a, float b) {
 	return a + b;
 }
-//Issue 1---------------------------------------------------------------------------
 
-//Issue 2 Write Multiply function BELOW+++++++++++++++++++++++++++++++++++++++++++++++++
-float multiply(float a, float b){
-  return a*b;
-}
-//Issue 2---------------------------------------------------------------------------
-
-//Issue 10: Subtract function
 float subtract(float a, float b){
-  return a-b;
+	return a-b;
 }
-//Issue 10--------------------------------------------------------------------------
+
+float multiply(float a, float b){
+	return a*b;
+}
+
+float divide(float a, float b){
+	if (b != 0) {
+		return a/b;
+	} else {
+		throw new ArithmeticException("Cannot divide by zero");
+}
+

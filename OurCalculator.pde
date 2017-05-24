@@ -8,9 +8,6 @@ Button sevenbutton = new Button(25, 350, "1");
 Button eightbutton = new Button(100, 350, "1");
 Button ninebutton = new Button(175, 350, "1");
 
-
-
-
 float answer; // Will hold previously computed answer.
 
 void setup(){

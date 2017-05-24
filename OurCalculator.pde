@@ -37,7 +37,8 @@ class Calculator{
   // Call this function from `mouseClicked`.
   void buttonClicked(){
     
-    Button pressed; // Stores the button that was pressed.
+    // Search for the button that was clicked on.
+    Button pressed = null;
     for (Button b : buttons){
       if (b.clicked()){
         pressed = b;
@@ -45,7 +46,12 @@ class Calculator{
       }
     }
     
-    // TODO: Not sure what to do once an operation has been selected...
+    // Make sure a button was actually pressed, if not, exit function.
+    if (pressed == null)
+      return;
+    
+    // Not sure what to do once an operation has been selected...
+    // I think we need to talk about how we will store partially entered results. 
     if (pressed.label.equals("+")){
       
     } else if (pressed.label.equals("-")){

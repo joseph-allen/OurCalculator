@@ -1,30 +1,52 @@
-Button onebutton = new Button(25, 200, "1");
-Button twobutton = new Button(100, 200, "1");
-Button threebutton = new Button(175, 200, "1");
-Button fourbutton = new Button(25, 275, "1");
-Button fivebutton = new Button(100, 275, "1");
-Button sixbutton = new Button(175, 275, "1");
-Button sevenbutton = new Button(25, 350, "1");
-Button eightbutton = new Button(100, 350, "1");
-Button ninebutton = new Button(175, 350, "1");
+
+Button onebutton; //Buttons initialized in setup, then added to ArrayList
+Button twobutton;
+Button threebutton;
+Button fourbutton;
+Button fivebutton;
+Button sixbutton;
+Button sevenbutton;
+Button eightbutton;
+Button ninebutton;
+Button zerobutton;
 
 float answer; // Will hold previously computed answer.
 ArrayList<Button> buttons; // Initialize in setup.
 
 void setup(){
   size(375,600);
-  onebutton.Display();
-  twobutton.Display();
-  threebutton.Display();
-  fourbutton.Display();
-  fivebutton.Display();
-  sixbutton.Display();
-  sevenbutton.Display();
-  eightbutton.Display();
-  ninebutton.Display();
+ 
+  buttons = new ArrayList<Button>(); //ArrayList initialize
+  
+  onebutton = new Button(25, 200, "1");
+  twobutton = new Button(100, 200, "2");
+  threebutton = new Button(175, 200, "3");
+  fourbutton = new Button(25, 275, "4");
+  fivebutton = new Button(100, 275, "5");
+  sixbutton = new Button(175, 275, "6");
+  sevenbutton = new Button(25, 350, "7");
+  eightbutton = new Button(100, 350, "8");
+  ninebutton = new Button(175, 350, "9");
+  zerobutton = new Button(100, 425, "0");
+  
+  buttons.add(onebutton);
+  buttons.add(twobutton);
+  buttons.add(threebutton);
+  buttons.add(fourbutton);
+  buttons.add(fivebutton);
+  buttons.add(sixbutton);
+  buttons.add(sevenbutton);
+  buttons.add(eightbutton);
+  buttons.add(ninebutton);
+  buttons.add(zerobutton);
+
 }
 
 void draw(){
+  background(255);
+  for(Button b: buttons){
+    b.Display();
+  }
 }
 
 //MATH FUNCTIONS BELOW
@@ -45,6 +67,7 @@ float divide(float a, float b){
 		return a/b;
 	} else {
 		throw new ArithmeticException("Cannot divide by zero");
+  }
 }
 
 // Returns true if the character is either a digit or the '.' period character.

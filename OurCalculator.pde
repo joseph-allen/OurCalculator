@@ -5,9 +5,17 @@ ArrayList<Button> buttons;
 int gap;
 
 void setup() {
-
   size(400, 600);
+  createButtons();
+}
 
+void draw() {
+  for (Button b : buttons) {
+    b.display();
+  }
+}
+
+void createButtons() {
   buttons = new ArrayList<Button>();
 
   //adding zero
@@ -30,11 +38,6 @@ void setup() {
 
   //clear button for future
   buttons.add(new Button(0, gap, "clear"));
-}
-void draw() {
-  for (Button b : buttons) {
-    b.display();
-  }
 }
 
 //MATH FUNCTIONS BELOW

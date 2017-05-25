@@ -19,9 +19,11 @@ class Button {
   }
 
   void display() {
+    updateColors();
     fill(bgColor);
     stroke(150);
     rect(posX, posY, sizeX, sizeY);
+    
     textSize(fontSize);
     textAlign(CENTER, CENTER);
     fill(textColor);
@@ -39,5 +41,11 @@ class Button {
   void pulse() {
     bgColor = BRIGHT;
     bgFade = 1.0;
+  }
+  
+  // Handles color changes over time.
+  void updateColors() {
+    bgFade /= 10.0;
+    bgColor = lerpColor(BRIGHT, DARK, bgFade);
   }
 }

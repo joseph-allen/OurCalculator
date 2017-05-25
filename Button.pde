@@ -4,21 +4,25 @@ class Button {
   float posX, posY;
   int fontSize = 38;
   String label;
+  final color BRIGHT = color(255,0,0),
+              DARK   = color(100,0,100);
+  color textColor, bgColor;
 
   Button(float _posX, float _posY, String _label) {
     posX = _posX;
     posY = _posY;
     label = _label;
+    bgColor = DARK;
+    textColor = BRIGHT;
   }
 
   void display() {
-    fill(100);
+    fill(bgColor);
     stroke(150);
     rect(posX, posY, sizeX, sizeY);
     textSize(fontSize);
     textAlign(CENTER, CENTER);
-    fill(255);
-    stroke(255);
+    fill(textColor);
     text(label, posX + sizeX / 2, posY + sizeY / 2);
   } 
   // Returns true if mouse is pressed and mouse is inside button.

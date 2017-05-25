@@ -10,5 +10,5 @@ If you'd like to contribute a change:
  - File a pull request with `OC-#` at the beginning of the title. (Where # is the Issue number your pull request works to solve)
 
 ## Notes on Style
-Indent style: ["K&R"](https://en.wikipedia.org/wiki/Indent_style#K.26R)
+Indent style: ["K&R"](https://en.wikipedia.org/wiki/Indent_style#K.26R)  
 Please use 2 space tabs instead of 4.

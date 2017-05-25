@@ -44,7 +44,7 @@ class Button {
   
   // Handles color changes over time.
   void updateColors() {
-    bgBrightness /= 10.0;
-    bgColor = lerpColor(BRIGHT, DARK, bgBrightness);
+    bgBrightness /= 1.5;
+    bgColor = lerpColor(DARK, BRIGHT, bgBrightness);
   }
 }

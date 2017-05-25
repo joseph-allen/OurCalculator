@@ -35,6 +35,9 @@ void mousePressed() {
     }
   }
   if (selectedButton != null) {
+    
+    selectedButton.pulse();
+    
     if (selectedButton.label == "=") {
       computeResult(); //for future commit
     } else if (selectedButton.label == "clear") {

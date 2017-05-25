@@ -7,7 +7,7 @@ class Button {
   final color BRIGHT = color(255),
               DARK   = color(100);
   color textColor, bgColor;
-  float bgFade;
+  float bgBrightness;
 
   Button(float _posX, float _posY, String _label) {
     posX = _posX;
@@ -15,7 +15,7 @@ class Button {
     label = _label;
     bgColor = DARK;
     textColor = BRIGHT;
-    bgFade = 0.0;
+    bgBrightness = 0.0;
   }
 
   void display() {
@@ -39,13 +39,12 @@ class Button {
   // Set background color to BRIGHT,
   // begin fading back to DARK.
   void pulse() {
-    bgColor = BRIGHT;
-    bgFade = 1.0;
+    bgBrightness = 1.0;
   }
   
   // Handles color changes over time.
   void updateColors() {
-    bgFade /= 10.0;
-    bgColor = lerpColor(BRIGHT, DARK, bgFade);
+    bgBrightness /= 10.0;
+    bgColor = lerpColor(BRIGHT, DARK, bgBrightness);
   }
 }

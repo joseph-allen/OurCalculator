@@ -21,7 +21,7 @@ class GUI {
     }
   }
 
-  void updateAction() {
+  Button getSelectedButton() {
     Button selectedButton = null;
 
     for (Button b : buttons) {
@@ -32,13 +32,14 @@ class GUI {
     }
     if (selectedButton != null) {
       if (selectedButton.label == "=") {
-        //for future commit
+        return selectedButton;
       } else if (selectedButton.label == "clear") {
         expression.delete(0, expression.length());
       } else {
         expression.append(selectedButton.label);
       }
     }
+    return selectedButton;
   }
 
   void createButtons() {

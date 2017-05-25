@@ -4,9 +4,10 @@ class Button {
   float posX, posY;
   int fontSize = 38;
   String label;
-  final color BRIGHT = color(255,0,0),
-              DARK   = color(100,0,100);
+  final color BRIGHT = color(255),
+              DARK   = color(100);
   color textColor, bgColor;
+  float bgFade;
 
   Button(float _posX, float _posY, String _label) {
     posX = _posX;
@@ -14,6 +15,7 @@ class Button {
     label = _label;
     bgColor = DARK;
     textColor = BRIGHT;
+    bgFade = 0.0;
   }
 
   void display() {
@@ -30,5 +32,12 @@ class Button {
     return (mouseX > posX && mouseX < posX + sizeX) &&
       (mouseY > posY && mouseY < posY + sizeY) &&
       mousePressed;
+  }
+  
+  // Set background color to BRIGHT,
+  // begin fading back to DARK.
+  void pulse() {
+    bgColor = BRIGHT;
+    bgFade = 1.0;
   }
 }

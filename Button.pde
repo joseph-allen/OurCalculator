@@ -39,6 +39,11 @@ class Button {
   }
   
   void updateColors() {
+    bgBrightness /= 1.5;
     bgColor = lerpColor(DARK, BRIGHT, bgBrightness);
+  }
+  
+  void flash() {
+    bgBrightness = 1.0;
   }
 }

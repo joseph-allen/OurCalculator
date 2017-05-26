@@ -6,6 +6,7 @@ class Button {
   String label;
   
   final color BRIGHT = color(255),
+              MID = color(150),
               DARK = color(100);
   color bgColor, textColor;
   float bgBrightness;
@@ -24,7 +25,7 @@ class Button {
     
     // Draw rectangle.
     fill(bgColor);
-    stroke(150);
+    stroke(MID);
     rect(posX, posY, sizeX, sizeY);
     
     // Draw text.

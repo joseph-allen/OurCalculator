@@ -35,7 +35,11 @@ class GUI {
         return selectedButton;
       } else if (selectedButton.label == "clear") {
         expression.delete(0, expression.length());
-      } else {
+      } 
+      else if(selectedButton.label == "del") {
+        expression.deleteCharAt(expression.length()-1);
+      }
+      else {
         expression.append(selectedButton.label);
       }
     }
@@ -63,5 +67,10 @@ class GUI {
 
     //clear button for future
     buttons.add(new Button(0, gap, "clear"));
+
+    buttons.add(new Button(gap, gap, "("));
+    buttons.add(new Button(gap*2, gap, ")"));
+    buttons.add(new Button(gap*2, height-gap, "."));
+    buttons.add(new Button(0, height-gap, "del"));
   }
 }

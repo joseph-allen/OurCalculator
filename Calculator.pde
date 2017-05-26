@@ -5,15 +5,14 @@ import javax.script.ScriptException;
 class Calculator {
 
   GUI gui;
+  ScriptEngine engine;
 
   Calculator(GUI g) {
     gui = g;
+    engine = (new ScriptEngineManager()).getEngineByName("js");
   }
 
   void evaluate() {
-    ScriptEngineManager manager = new ScriptEngineManager();
-    ScriptEngine engine = manager.getEngineByName("js");
-
     try {
       Object answer = engine.eval(gui.expression.toString());
       gui.expression.delete(0, gui.expression.length());

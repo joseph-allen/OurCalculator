@@ -14,12 +14,23 @@ class Calculator {
 
   void evaluate() {
     try {
-      Object answer = engine.eval(gui.expression.toString());
+      Object answer = engine.eval(validator(gui.expression.toString()));
       gui.expression.delete(0, gui.expression.length());
       gui.expression.append(answer);
     } 
     catch(ScriptException e) {
       gui.expression = new StringBuilder("Invalid Input");
     }
+  }
+  
+  String validator(String input) throws ScriptException {
+    // handles js comments being valid, also ** which would fail anyway
+    if (input.matches("(.*)[*/][*/](.*)")) throw new ScriptException(new UnsupportedOperationException());
+    // -- to +
+    input = input.replaceAll("-{2}","+");
+    // squish ++ to +
+    input = input.replaceAll("\\+{2,}","+");
+    
+    return input;
   }
 }

@@ -31,7 +31,7 @@ class Button {
     textSize(fontSize);
     textAlign(CENTER, CENTER);
     fill(textColor);
-    stroke(255);
+    stroke(textColor);
     text(label, posX + sizeX / 2, posY + sizeY / 2);
   } 
   // Returns true if mouse is pressed and mouse is inside button.

@@ -27,6 +27,7 @@ class GUI {
     for (Button b : buttons) {
       if (b.clicked()) {
         selectedButton = b;
+        selectedButton.flash();
         break;
       }
     }

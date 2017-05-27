@@ -5,17 +5,29 @@ import javax.script.ScriptException;
 class Calculator {
 
   GUI gui;
+  ScriptEngine engine;
+  ScriptEngineManager manager;
 
   Calculator(GUI g) {
     gui = g;
+    manager = new ScriptEngineManager();
+    engine = manager.getEngineByName("js");
   }
 
   void evaluate() {
-    ScriptEngineManager manager = new ScriptEngineManager();
-    ScriptEngine engine = manager.getEngineByName("js");
+    String exp = gui.expression.toString();
+
+    exp = exp.replaceAll("-{2}", "+"); // modify -- to +
+    exp = exp.replaceAll("\\+{2,}", "+"); // reduce ++... to +
 
     try {
-      Object answer = engine.eval(gui.expression.toString());
+      Object answer = engine.eval(exp);
+
+      if (answer == null) {
+        gui.expression = new StringBuilder("Invalid Input");
+        return;
+      }
+
       gui.expression.delete(0, gui.expression.length());
       gui.expression.append(answer);
     } 

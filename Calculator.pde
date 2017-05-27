@@ -6,28 +6,28 @@ class Calculator {
 
   GUI gui;
   ScriptEngine engine;
+  ScriptEngineManager manager;
 
   Calculator(GUI g) {
     gui = g;
-    engine = (new ScriptEngineManager()).getEngineByName("js");
+    manager = new ScriptEngineManager();
+    engine = manager.getEngineByName("js");
   }
 
   void evaluate() {
-    String express = gui.expression.toString();
-    
-    // prevalidate expression
-    // handles js comments being valid, also ** which would fail anyway
-    if (express.matches("(.*)[*/][*/](.*)")) {
-      gui.expression = new StringBuilder("Invalid Input");
-      return;
-    }
-    // modify -- to +
-    express = express.replaceAll("-{2}","+");
-    // sqush ++... to +
-    express = express.replaceAll("\\+{2,}","+");
+    String exp = gui.expression.toString();
+
+    exp = exp.replaceAll("-{2}", "+"); // modify -- to +
+    exp = exp.replaceAll("\\+{2,}", "+"); // reduce ++... to +
 
     try {
-      Object answer = engine.eval(express);
+      Object answer = engine.eval(exp);
+
+      if (answer == null) {
+        gui.expression = new StringBuilder("Invalid Input");
+        return;
+      }
+
       gui.expression.delete(0, gui.expression.length());
       gui.expression.append(answer);
     } 

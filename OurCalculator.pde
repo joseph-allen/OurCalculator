@@ -15,7 +15,9 @@ void draw() {
 void mousePressed() {
   Button selected = gui.getSelectedButton();
 
-  if (selected != null && selected.label == "=") {
-    calc.evaluate();
+  if (selected != null) {
+    if (selected.label == "=") {
+      calc.evaluate();
+    }
   }
 }

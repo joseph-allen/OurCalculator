@@ -4,10 +4,10 @@ class Button {
   float posX, posY;
   int fontSize = 38;
   String label;
-  
-  final color BRIGHT = color(255),
-              MID = color(150),
-              DARK = color(100);
+
+  final color BRIGHT = color(255), 
+    MID = color(150), 
+    DARK = color(100);
   color bgColor, textColor;
   float bgBrightness;
 
@@ -22,12 +22,12 @@ class Button {
 
   void display() {
     updateColors();
-    
+
     // Draw rectangle.
     fill(bgColor);
     stroke(MID);
     rect(posX, posY, sizeX, sizeY);
-    
+
     // Draw text.
     textSize(fontSize);
     textAlign(CENTER, CENTER);
@@ -41,12 +41,12 @@ class Button {
       (mouseY > posY && mouseY < posY + sizeY) &&
       mousePressed;
   }
-  
+
   void updateColors() {
     bgBrightness /= 1.5;
     bgColor = lerpColor(DARK, BRIGHT, bgBrightness);
   }
-  
+
   void flash() {
     bgBrightness = 1.0;
   }

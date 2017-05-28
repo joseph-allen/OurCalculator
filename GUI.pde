@@ -5,6 +5,8 @@ class GUI {
   StringBuilder expression;
   int gap;
 
+  Button previousButton = null;
+
   GUI() {
     buttons = new ArrayList<Button>();
     expression = new StringBuilder();
@@ -33,17 +35,22 @@ class GUI {
     }
     if (selectedButton != null) {
       if (selectedButton.label == "=") {
+        previousButton = selectedButton;
         return selectedButton;
       } else if (selectedButton.label == "clear") {
         expression.delete(0, expression.length());
-      } 
-      else if(selectedButton.label == "del") {
-        expression.deleteCharAt(expression.length()-1);
-      }
-      else {
+      } else if (selectedButton.label == "del") {
+        if (expression.length() != 0) { //don't delete if String is already empty
+          expression.deleteCharAt(expression.length()-1);
+        }
+      } else { //if '=' was clicked and the next press was a digit, bracket or decimal, clear the expression 
+        if (previousButton != null && previousButton.label == "=" && selectedButton.label.matches("\\d|[\\(\\)]|\\.")) {
+          expression.delete(0, expression.length());
+        }      
         expression.append(selectedButton.label);
       }
     }
+    previousButton = selectedButton;
     return selectedButton;
   }
 

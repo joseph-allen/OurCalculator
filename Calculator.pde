@@ -2,6 +2,9 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 class Calculator {
 
   GUI gui;
@@ -26,6 +29,12 @@ class Calculator {
       if (answer == null) {
         gui.expression = new StringBuilder("Invalid Input");
         return;
+      }
+          
+      if (answer.toString().length() > 14) {
+        BigDecimal bd = new BigDecimal(answer.toString());
+        bd = bd.round(new MathContext(14));
+        answer = bd;
       }
 
       gui.expression.delete(0, gui.expression.length());

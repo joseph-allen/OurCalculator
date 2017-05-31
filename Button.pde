@@ -5,7 +5,7 @@ class Button {
   int fontSize = 38;
   String label;
   
-  final color BRIGHT = color(255),
+  final color BRIGHT = color(0,0,200),
               MID = color(150),
               DARK = color(100);
   color bgColor, textColor;

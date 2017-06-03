@@ -19,9 +19,11 @@ class Calculator {
 
   void evaluate() {
     String exp = gui.expression.toString();
-
+    println(exp);
+    exp = exp.replaceAll("(?<!\\d)0+(?=\\d+)", "");
     exp = exp.replaceAll("-{2}", "+"); // modify -- to +
     exp = exp.replaceAll("\\+{2,}", "+"); // reduce ++... to +
+    println(exp);
 
     try {
       Object answer = engine.eval(exp);

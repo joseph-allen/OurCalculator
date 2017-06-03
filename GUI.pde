@@ -5,6 +5,8 @@ class GUI {
   StringBuilder expression;
   int gap;
 
+  Button previousButton = null;
+
   GUI() {
     buttons = new ArrayList<Button>();
     expression = new StringBuilder();
@@ -21,7 +23,7 @@ class GUI {
     }
   }
 
-  void updateAction() {
+  Button getSelectedButton() {
     Button selectedButton = null;
 
     for (Button b : buttons) {
@@ -33,13 +35,23 @@ class GUI {
     }
     if (selectedButton != null) {
       if (selectedButton.label == "=") {
-        //for future commit
+        previousButton = selectedButton;
+        return selectedButton;
       } else if (selectedButton.label == "clear") {
         expression.delete(0, expression.length());
-      } else {
+      } else if (selectedButton.label == "del") {
+        if (expression.length() != 0) { //don't delete if String is already empty
+          expression.deleteCharAt(expression.length()-1);
+        }
+      } else { //if '=' was clicked and the next press was a digit, bracket or decimal, clear the expression 
+        if (previousButton != null && previousButton.label == "=" && selectedButton.label.matches("\\d|[\\(\\)]|\\.")) {
+          expression.delete(0, expression.length());
+        }      
         expression.append(selectedButton.label);
       }
     }
+    previousButton = selectedButton;
+    return selectedButton;
   }
 
   void createButtons() {
@@ -63,5 +75,10 @@ class GUI {
 
     //clear button for future
     buttons.add(new Button(0, gap, "clear"));
+
+    buttons.add(new Button(gap, gap, "("));
+    buttons.add(new Button(gap*2, gap, ")"));
+    buttons.add(new Button(gap*2, height-gap, "."));
+    buttons.add(new Button(0, height-gap, "del"));
   }
 }

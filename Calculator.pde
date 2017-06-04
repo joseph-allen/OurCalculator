@@ -19,7 +19,8 @@ class Calculator {
 
   void evaluate() {
     String exp = gui.expression.toString();
-
+    
+    exp = exp.replaceAll("(?<!\\d|\\.)0+(?=\\d+)", "");
     exp = exp.replaceAll("-{2}", "+"); // modify -- to +
     exp = exp.replaceAll("\\+{2,}", "+"); // reduce ++... to +
 

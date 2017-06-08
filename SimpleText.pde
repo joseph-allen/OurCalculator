@@ -1,8 +1,11 @@
 class SimpleText {
   // Possibly turn this into a 'textbox' like element;
   StringBuilder text;
+  String pingText;
+  int pingTimer;
   SimpleText() {
     text = new StringBuilder();
+    pingText = "";
   }
 
   StringBuilder getText() {
@@ -12,6 +15,10 @@ class SimpleText {
   void set(Object text_) {
     clear();
     append(text_);
+    if (text.toString().equals("Invalid Input")) {
+      clear();
+      setPingText("Invalid Input");
+    }
   }
 
   void del() {
@@ -27,8 +34,18 @@ class SimpleText {
   void clear() {
     text.delete(0, text.length());
   }
-
+  void setPingText(String pingText_) {
+    pingText = pingText_;
+    pingTimer = millis() + 500;
+  }
   String toString() {
     return text.toString();
+  }
+  public String getDisplayString() {
+    if (millis() < pingTimer) {
+      return pingText;
+    } else {
+      return toString();
+    }
   }
 }

@@ -18,7 +18,9 @@ class GUI {
   void render() {
     fill(255);
     textAlign(LEFT, CENTER);
-    text(expression.toString(), width-textWidth(expression.toString()+padding), gap/2);
+    String expString = expression.getDisplayString();
+    text(expString, width-textWidth(expString+" "), gap/2);
+    // add a little M if there is a value in memory
     textSize(15);
     if (!register.equals("")) text("M", 5, gap-15);
     for (Button b : buttons) {

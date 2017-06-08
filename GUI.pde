@@ -61,6 +61,8 @@ class GUI {
       if (isNumber(temp) || temp.equals("")) {
         expression.set(register);
         register = temp.toString();
+      } else {
+        expression.append(register);
       }
       break;
     case "c":

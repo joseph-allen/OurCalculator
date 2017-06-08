@@ -47,8 +47,8 @@ class Button {
     sizeY = y;
     return this;
   }
-  Button setFontSize(int fontSize) {
-    fontSize = fontSize;
+  Button setFontSize(int fontSize_) {
+    fontSize = fontSize_;
     return this;
   }
 

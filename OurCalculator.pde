@@ -15,3 +15,7 @@ void draw() {
 void mousePressed() {
   gui.mousePressed();
 }
+
+void keyPressed() {
+  gui.keyPressed();
+}

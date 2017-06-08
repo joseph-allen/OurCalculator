@@ -41,7 +41,7 @@ class SimpleText {
   String toString() {
     return text.toString();
   }
-  public String getDisplayString() {
+  String getDisplayString() {
     if (millis() < pingTimer) {
       return pingText;
     } else {

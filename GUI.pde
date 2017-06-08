@@ -1,6 +1,7 @@
 class GUI {
 
   ArrayList<Button> buttons;
+  HashMap<String, Button> buttonMap;
   int padding = 5; //pixel padding for input from the right 
   SimpleText expression;
   String register = "";
@@ -11,6 +12,7 @@ class GUI {
 
   GUI() {
     buttons = new ArrayList<Button>();
+    buttonMap = new HashMap<String, Button>();
     createButtons();
     expression = new SimpleText();
   }  
@@ -29,7 +31,7 @@ class GUI {
   }
 
   Button getSelectedButton() {
-    
+
     Button selectedButton = null;
 
     for (Button b : buttons) {
@@ -102,6 +104,9 @@ class GUI {
     buttons.add(new Button(gap*2, gap, ")"));
     buttons.add(new Button(gap*2, height-gap, "."));
     buttons.add(new Button(0, height-gap, "del"));
+    for (Button bt : buttons) {
+      buttonMap.put(bt.label, bt);
+    }
   }
 
   void mousePressed() {
@@ -119,6 +124,32 @@ class GUI {
     } 
     catch (Exception e) {
       return false;
+    }
+  }
+  void keyPressed() {
+    String keyValue;
+    switch (key) {
+    case  DELETE:
+      keyValue = "del";
+      break;
+    case ' ' :
+      keyValue = "clear";
+      break;
+    case 'm' | 'M':
+      keyValue = "M";
+      break;
+    case 'c' | 'C':
+      keyValue = "c";
+      break;
+    case ENTER :
+      keyValue = "=";
+      break;
+    default:
+      keyValue = Character.toString(key);
+    }
+    if (gui.buttonMap.containsKey(keyValue)) {
+      // get the button that represents this keypress
+      action(gui.buttonMap.get(keyValue));
     }
   }
 }

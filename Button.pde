@@ -41,6 +41,16 @@ class Button {
       (mouseY > posY && mouseY < posY + sizeY) &&
       mousePressed;
   }
+  
+  Button setDim(int x, int y) {
+    sizeX = x;
+    sizeY = y;
+    return this;
+  }
+  Button setFontSize(int fontSize) {
+    fontSize = fontSize;
+    return this;
+  }
 
   void updateColors() {
     bgBrightness /= 1.5;

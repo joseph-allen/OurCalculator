@@ -3,8 +3,8 @@ class GUI {
   ArrayList<Button> buttons;
   int padding = 5; //pixel padding for input from the right 
   SimpleText expression;
-  boolean isEvaluated;
   String register = "";
+  String operatorRegex;
   int gap;
 
   Button previousButton = null;
@@ -19,6 +19,8 @@ class GUI {
     fill(255);
     textAlign(LEFT, CENTER);
     text(expression.toString(), width-textWidth(expression.toString()+padding), gap/2);
+    textSize(15);
+    if (!register.equals("")) text("M", 5, gap-15);
     for (Button b : buttons) {
       b.display();
     }
@@ -41,7 +43,6 @@ class GUI {
     switch (value) {
     case "=" :
       expression.set(calc.evaluate(expression.getText()));
-      isEvaluated = true;
       break;
     case "del" : 
       expression.del(); 
@@ -49,12 +50,21 @@ class GUI {
     case "clear":
       expression.clear();
       break;
+    case "M":
+      String temp = expression.toString();
+      if (isNumber(temp) || temp.equals("")) {
+        expression.set(register);
+        register = temp.toString();
+      }
+      break;
+    case "c":
+      register = "";
+      break;
     default: 
       // if value is a digit, bracket or decimal and expression was evaluated, clear the expression to enter a new one.
-      if (value.matches("\\d|[\\(\\)]|\\.") && isEvaluated) {
+      if (!isOperator(value) && previousButton!=null && previousButton.label.equals("=")) {
         expression.clear();
-      }
-      isEvaluated = false;
+      } 
       expression.append(value);
     }
   }
@@ -75,12 +85,14 @@ class GUI {
     }  
     //other arithmetic buttons
     String[] operators = {"=", "-", "+", "/", "*"}; 
+    operatorRegex = "[-+\\/\\*]";
     for (int i=1; i<=5; i++)
       buttons.add(new Button(width-gap, height-gap*i, operators[i-1]));
 
     //clear button for future
-    buttons.add(new Button(0, gap, "clear"));
-
+    buttons.add(  new Button(0, gap, "M"  ).setDim(50, 50).setFontSize(15)       );
+    buttons.add(  new Button(50, gap, "c"  ).setDim(50, 50).setFontSize(15)       );
+    buttons.add(  new Button(0, gap+50, "clear").setDim(100, 50)  );
     buttons.add(new Button(gap, gap, "("));
     buttons.add(new Button(gap*2, gap, ")"));
     buttons.add(new Button(gap*2, height-gap, "."));
@@ -90,5 +102,18 @@ class GUI {
   void mousePressed() {
     Button selected = getSelectedButton();
     if (selected != null) action(selected.label);
+  }
+
+  boolean isOperator(String test) {
+    return test.matches(operatorRegex);
+  }
+  boolean isNumber(String test) {
+    try {
+      Float.parseFloat(test);
+      return true;
+    } 
+    catch (Exception e) {
+      return false;
+    }
   }
 }

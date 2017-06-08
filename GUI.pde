@@ -29,6 +29,7 @@ class GUI {
   }
 
   Button getSelectedButton() {
+    
     Button selectedButton = null;
 
     for (Button b : buttons) {
@@ -41,8 +42,9 @@ class GUI {
     return selectedButton;
   }
 
-  void action(String value) {
-    switch (value) {
+  void action(Button selectedButton) {
+    if (selectedButton == null) return;
+    switch (selectedButton.label) {
     case "=" :
       expression.set(calc.evaluate(expression.getText()));
       break;
@@ -64,11 +66,12 @@ class GUI {
       break;
     default: 
       // if value is a digit, bracket or decimal and expression was evaluated, clear the expression to enter a new one.
-      if (!isOperator(value) && previousButton!=null && previousButton.label.equals("=")) {
+      if (!isOperator(selectedButton.label) && previousButton!=null && previousButton.label.equals("=")) {
         expression.clear();
       } 
-      expression.append(value);
+      expression.append(selectedButton.label);
     }
+    previousButton = selectedButton;
   }
 
   void createButtons() {
@@ -103,7 +106,7 @@ class GUI {
 
   void mousePressed() {
     Button selected = getSelectedButton();
-    if (selected != null) action(selected.label);
+    if (selected != null) action(selected);
   }
 
   boolean isOperator(String test) {

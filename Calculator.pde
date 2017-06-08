@@ -17,9 +17,9 @@ class Calculator {
     engine = manager.getEngineByName("js");
   }
 
-  void evaluate() {
-    String exp = gui.expression.toString();
-    
+  Object evaluate(StringBuilder input) {
+    String exp = input.toString();
+
     exp = exp.replaceAll("(?<!\\d|\\.)0+(?=\\d+)", "");
     exp = exp.replaceAll("-{2}", "+"); // modify -- to +
     exp = exp.replaceAll("\\+{2,}", "+"); // reduce ++... to +
@@ -28,21 +28,20 @@ class Calculator {
       Object answer = engine.eval(exp);
 
       if (answer == null) {
-        gui.expression = new StringBuilder("Invalid Input");
-        return;
+        return "Invalid Input";
       }
-          
+
       if (answer.toString().length() > 14) {
         BigDecimal bd = new BigDecimal(answer.toString());
         bd = bd.round(new MathContext(14));
         answer = bd;
       }
-
-      gui.expression.delete(0, gui.expression.length());
-      gui.expression.append(answer);
+      return answer;
+      //gui.expression.delete(0, gui.expression.length());
+      //gui.expression.append(answer);
     } 
     catch(ScriptException e) {
-      gui.expression = new StringBuilder("Invalid Input");
+      return "Invalid Input";
     }
   }
 }

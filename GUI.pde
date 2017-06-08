@@ -2,22 +2,23 @@ class GUI {
 
   ArrayList<Button> buttons;
   int padding = 5; //pixel padding for input from the right 
-  StringBuilder expression;
+  SimpleText expression;
+  boolean isEvaluated;
+  String register = "";
   int gap;
 
   Button previousButton = null;
 
   GUI() {
     buttons = new ArrayList<Button>();
-    expression = new StringBuilder();
     createButtons();
+    expression = new SimpleText();
   }  
 
   void render() {
     fill(255);
     textAlign(LEFT, CENTER);
     text(expression.toString(), width-textWidth(expression.toString()+padding), gap/2);
-
     for (Button b : buttons) {
       b.display();
     }
@@ -33,25 +34,29 @@ class GUI {
         break;
       }
     }
-    if (selectedButton != null) {
-      if (selectedButton.label == "=") {
-        previousButton = selectedButton;
-        return selectedButton;
-      } else if (selectedButton.label == "clear") {
-        expression.delete(0, expression.length());
-      } else if (selectedButton.label == "del") {
-        if (expression.length() != 0) { //don't delete if String is already empty
-          expression.deleteCharAt(expression.length()-1);
-        }
-      } else { //if '=' was clicked and the next press was a digit, bracket or decimal, clear the expression 
-        if (previousButton != null && previousButton.label == "=" && selectedButton.label.matches("\\d|[\\(\\)]|\\.")) {
-          expression.delete(0, expression.length());
-        }      
-        expression.append(selectedButton.label);
-      }
-    }
-    previousButton = selectedButton;
     return selectedButton;
+  }
+
+  void action(String value) {
+    switch (value) {
+    case "=" :
+      expression.set(calc.evaluate(expression.getText()));
+      isEvaluated = true;
+      break;
+    case "del" : 
+      expression.del(); 
+      break;
+    case "clear":
+      expression.clear();
+      break;
+    default: 
+      // if value is a digit, bracket or decimal and expression was evaluated, clear the expression to enter a new one.
+      if (value.matches("\\d|[\\(\\)]|\\.") && isEvaluated) {
+        expression.clear();
+      }
+      isEvaluated = false;
+      expression.append(value);
+    }
   }
 
   void createButtons() {
@@ -80,5 +85,10 @@ class GUI {
     buttons.add(new Button(gap*2, gap, ")"));
     buttons.add(new Button(gap*2, height-gap, "."));
     buttons.add(new Button(0, height-gap, "del"));
+  }
+
+  void mousePressed() {
+    Button selected = getSelectedButton();
+    if (selected != null) action(selected.label);
   }
 }
